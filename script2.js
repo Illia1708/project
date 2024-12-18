@@ -51,18 +51,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const cookiesButton = document.querySelector('.cookies-button');
 
     if (cookiesButton) {
-        // Створюємо напівпрозорий шар для блокування взаємодії
+    
         let overlay = document.createElement('div');
         overlay.classList.add('overlay');
         document.body.appendChild(overlay);
 
-        // Кнопка закриває cookie-повідомлення і знімає блокування
+
         cookiesButton.addEventListener('click', function () {
-            cookiesAgreement.classList.add('cookies-agreement-closed');  // Сховати повідомлення
-            overlay.style.display = 'none';  // Видалити overlay
+            cookiesAgreement.classList.add('cookies-agreement-closed');  
+            overlay.style.display = 'none';  
         });
     } else {
         console.error('Кнопка не знайдена');
     }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const cookiesButton = document.querySelector('.cookies-button');
+    const cookiesAgreement = document.querySelector('.cookies-agreement');
+
+    cookiesButton.addEventListener('click', () => {
+        cookiesAgreement.style.display = 'none';
+        // Логіка для збереження кукіс (за потреби)
+        document.cookie = "cookiesAccepted=true; path=/; max-age=31536000";
+    });
+});
